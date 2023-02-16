@@ -3,19 +3,20 @@ FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Shanghai
 
-#RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list 
-#RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list 
-#RUN sed -i "s/security.debian.org/mirrors.aliyun.com\/debian-security/g" /etc/apt/sources.list 
-#RUN sed -i "s/security.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
+# We use aliyun mirrors.
+RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list 
+RUN sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list 
+RUN sed -i "s/security.debian.org/mirrors.aliyun.com\/debian-security/g" /etc/apt/sources.list 
+RUN sed -i "s/security.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
  
-#RUN apt update
-#RUN apt upgrade -y
+RUN apt update
+RUN apt upgrade -y
 RUN apt install -y python3 python3-pip 
 RUN apt install -y apt-transport-https git
 
-#RUN pip install -U pip
-#RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
-#RUN pip config set install.trusted-host mirrors.aliyun.com
+RUN pip install -U pip
+RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
+RUN pip config set install.trusted-host mirrors.aliyun.com
 
 RUN mkdir /usr/local/codes
 WORKDIR /usr/local/codes

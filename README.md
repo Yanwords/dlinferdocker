@@ -9,6 +9,9 @@ data extraction. The Docker container will
 
 > We expect the data-extracted and training process to take a few days.
 > Thus, we supply the pre-trained model in the RQ3 to evaluate DLInfer directly.
+> We also use aliyun mirrors to accelate the packages installation. If users cannot
+> use aliyun mirrors, please change the mirrors(line 7 to line 10) and uncomment the pip configuratin(line 17 to line 19).
+> The default sources cannot install the Python3 environment. 
 
 ## Usage
 
