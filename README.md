@@ -19,24 +19,24 @@ are in the directory of this README file, run:
 docker build . -t dlinfer
 ```
 
+If users cannot build the Docker image, and run:
+```bash
+docker build . -f Dockerfile_mini -t dlinfer
+```
+
 Second, create a container from the built image, mount `/local/path` to
 `/container/path`, and run _bash_ in the container:
 
 ```bash
-docker run --rm -it -v /local/path/to/store/data:/usr/data dlinfer:latest /bin/bash
+docker run -it -v /local/path/to/store/data:/usr/data dlinfer:latest /bin/bash
 ```
 
-Then, build the sentencepiece, run:
-
+Finally, if users only build a minimal image, then install the sentencepiece and Python packages, and run:
 ```bash
 bash sentencepiece.sh
-```
-
-Finally, install the Python packages, and run:
-```bash
 python3 -m pip install -r requirements.txt
 ```
-to create the environment.
+to create the environment. If users build the default image successfully, you can ignore this step. 
 
 All related data to `/local/path/to/store/data`. Specifically,
 
@@ -48,12 +48,8 @@ All related data to `/local/path/to/store/data`. Specifically,
 **Before we train, validate, and test RQ 3, we need to uncomment the corresponding lines in DLInfer/config.py**
 
 ![configuration](./image/data_path.png)
-
-#### Step 1: Data Preparation
-```bash
-apt install -y openjdk-8-jdk
-```
-
+**Using the dataset in Zenodo, Users don't need to spend a few days to infer types and extract slicing repeatly. So users can ignore the above steps.**
+#### Step 1: Data Preparatiodu 
 ```python get_pysonar2.py``` to get data progressed with Pysonar2. This step needs to download the Github projects. This process may spend a few days.
 
 #### Step 2: Static Slicing Feature Collection
@@ -61,9 +57,7 @@ apt install -y openjdk-8-jdk
 Each project will have a corresponding json file.  
 Actually, the JSON files used in our experiment are provided.  This process may spend a few days. 
 
-**Using the dataset in Zenodo, Users don't need to spend a few days to infer types and extract slicing repeatly. So users can ignore the above steps.**
 
-#### Step 2: Static Slicing Feature Collection
 ```python get_txt_resp_dynamic.py``` ```python get_txt_resp_dynamic.py``` to maintain only variables, types and slices in txt files
 for projects in "../data_dynamic/dynamic/" and in "../data_dynamic/static/". 
 #### Step 3: Code Slicing Embedding
