@@ -50,6 +50,10 @@ All related data to `/local/path/to/store/data`. Specifically,
 ![configuration](./image/data_path.png)
 
 #### Step 1: Data Preparation
+```bash
+apt install -y openjdk-8-jdk
+```
+
 ```python get_pysonar2.py``` to get data progressed with Pysonar2. This step needs to download the Github projects. This process may spend a few days.
 
 #### Step 2: Static Slicing Feature Collection
